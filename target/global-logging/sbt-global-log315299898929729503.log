@@ -1,5 +1,0 @@
-[0m[[0m[0mdebug[0m] [0m[0m> Exec(run, Some(3b886920-d071-404a-8469-d67a6db3e621), Some(CommandSource(console0)))[0m
-[0m[[0m[0mdebug[0m] [0m[0mEvaluating tasks: Compile / run[0m
-[0m[[0m[0mdebug[0m] [0m[0mRunning task... Cancel: Signal, check cycles: false, forcegc: true[0m
-[0m[[0m[0minfo[0m] [0m[0mcompiling 1 Scala source to /Users/wiemzin/github/openapiexample/target/scala-2.13/classes ...[0m
-[0m[[0m[0minfo[0m] [0m[0mshutting down sbt server[0m

@@ -1,6 +1,0 @@
-[0m[[0m[0mdebug[0m] [0m[0m> Exec(compile, Some(c308651e-0e9b-4da4-9bff-92e79851691c), Some(CommandSource(console0)))[0m
-[0m[[0m[0mdebug[0m] [0m[0mEvaluating tasks: Compile / compile[0m
-[0m[[0m[0mdebug[0m] [0m[0mRunning task... Cancel: Signal, check cycles: false, forcegc: true[0m
-[0m[[0m[0minfo[0m] [0m[0mcompiling 6 Scala sources to /Users/wiemzin/github/endpoints-gen/target/scala-2.13/classes ...[0m
-[0m[[0m[32msuccess[0m] [0m[0mTotal time: 8 s, completed 1 Nov 2024, 16:37:37[0m
-[0m[[0m[0mdebug[0m] [0m[0m> Exec(shell, None, None)[0m
