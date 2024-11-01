@@ -14,13 +14,14 @@ object Main extends ZIOAppDefault {
     try source.getLines().mkString("\n")
     finally source.close()
   }
+
   override def run = {
     for {
       json <- ZIO.attempt(readJsonFileAsString("/api.json"))
       openApi <- ZIO.fromEither(OpenAPI.fromJson(json))
-      scala <- ZIO.attempt(EndpointGen.fromOpenAPI(openApi))
+      endpointsAndComponentsFiles <- ZIO.attempt(EndpointGen.fromOpenAPI(openApi))
       directory <- ZIO.attempt(Files.createDirectories(Paths.get("src")))
-      _ <- ZIO.attempt(CodeGen.writeFiles(scala,java.nio.file.Paths.get(directory.toString, "main", "scala"), "example", None)).debug("codegen")
-    } yield()
+      _ <- ZIO.attempt(CodeGen.writeFiles(endpointsAndComponentsFiles, java.nio.file.Paths.get(directory.toString, "main", "scala"), "example", None)).debug("codegen")
+    } yield ()
   }
 }
