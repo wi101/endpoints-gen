@@ -1,0 +1,11 @@
+[0m[[0m[0mdebug[0m] [0m[0m> Exec(run, Some(f73b4aac-90c1-4d6a-b36c-15191199254e), Some(CommandSource(console0)))[0m
+[0m[[0m[0mdebug[0m] [0m[0mEvaluating tasks: Compile / run[0m
+[0m[[0m[0mdebug[0m] [0m[0mRunning task... Cancel: Signal, check cycles: false, forcegc: true[0m
+[0m[[0m[0minfo[0m] [0m[0mcompiling 1 Scala source to /Users/wiemzin/github/openapiexample/target/scala-2.13/classes ...[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/wiemzin/github/openapiexample/src/main/scala/Main.scala:17:67: magnolia: could not infer DeriveJsonEncoder.Typeclass for type Object[0m
+[0m[[0m[31merror[0m] [0m[0m    implicit val encoder: JsonEncoder[Object] = DeriveJsonEncoder.gen[0m
+[0m[[0m[31merror[0m] [0m[0m                                                                  ^[0m
+[0m[[0m[31merror[0m] [0m[0mone error found[0m
+[0m[[0m[31merror[0m] [0m[0m(Compile / [31mcompileIncremental[0m) Compilation failed[0m
+[0m[[0m[31merror[0m] [0m[0mTotal time: 3 s, completed 1 Nov 2024, 15:58:51[0m
+[0m[[0m[0mdebug[0m] [0m[0m> Exec(shell, None, None)[0m
