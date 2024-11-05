@@ -9,19 +9,27 @@ import scala.io.Source
 
 object Main extends ZIOAppDefault {
 
-  def readJsonFileAsString(filePath: String): String = {
-    val source = Source.fromInputStream(getClass.getResourceAsStream(filePath))
-    try source.getLines().mkString("\n")
-    finally source.close()
-  }
+  def readJsonFileAsString(filePath: String): Task[String] = for {
+    source <- ZIO.attempt(Source.fromInputStream(getClass.getResourceAsStream(filePath)))
+    res    <- ZIO.attempt(source.getLines().mkString("\n")).ensuring(ZIO.succeed(source.close()))
+  } yield res
 
-  override def run = {
+  override def run =
     for {
-      json <- ZIO.attempt(readJsonFileAsString("/api.json"))
-      openApi <- ZIO.fromEither(OpenAPI.fromJson(json))
+      json                        <- readJsonFileAsString("/api.json")
+      scalaFmt                    <- ZIO.attempt(java.nio.file.Paths.get(".scalafmt.conf"))
+      openApi                     <- ZIO.fromEither(OpenAPI.fromJson(json))
       endpointsAndComponentsFiles <- ZIO.attempt(EndpointGen.fromOpenAPI(openApi))
-      directory <- ZIO.attempt(Files.createDirectories(Paths.get("src")))
-      _ <- ZIO.attempt(CodeGen.writeFiles(endpointsAndComponentsFiles, java.nio.file.Paths.get(directory.toString, "main", "scala"), "example", None)).debug("codegen")
+      directory                   <- ZIO.attempt(Files.createDirectories(Paths.get("src")))
+      _                           <- ZIO
+                                       .attempt(
+                                         CodeGen.writeFiles(
+                                           endpointsAndComponentsFiles,
+                                           java.nio.file.Paths.get(directory.toString, "main", "scala", "codegen"),
+                                           "codegen",
+                                           Some(scalaFmt)
+                                         )
+                                       )
+                                       .debug("codegen")
     } yield ()
-  }
 }
